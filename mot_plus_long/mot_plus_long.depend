@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1740343437 source:c:\users\hp\documents\c\mot_plus_long\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<windows.h>
+	<time.h>
+
