@@ -43,12 +43,26 @@ char generer_voyelle() {
 }
 
 // Fonction pour générer une grille de 9 lettres de manière aléatoire
-void generer_grille(char grille[]) {
-    for (int i = 0; i < 9; i++) {
-        if (rand() % 2 == 0) {
-            grille[i] = generer_consonne();
-        } else {
-            grille[i] = generer_voyelle();
+void generer_grille_manuelle(char grille[]) {
+    int index = 0;
+    char touche;
+    gotoxy(82, 0);
+    printf("\nAppuyez sur 'C' pour une consonne ou 'V' pour une voyelle\n");
+
+    while (index < 9) {
+        touche = _getch(); // Capture la touche pressée
+
+        if (touche == 'C' || touche == 'c') {
+            grille[index] = generer_consonne();
+            gotoxy(25 + (index * 7), 5); // Positionner la lettre
+            printf("%c", grille[index]);
+            index++;
+        }
+        else if (touche == 'V' || touche == 'v') {
+            grille[index] = generer_voyelle();
+            gotoxy(25 + (index * 7), 5); // Positionner la lettre
+            printf("%c", grille[index]);
+            index++;
         }
     }
 }
@@ -86,6 +100,8 @@ int menu() {
 
 // Programme principal
 int main() {
+    int score1 = 0;
+    int score2 = 0;
       printf("\033[1mTexte en gras\033[0m\n");
 
     srand(time(NULL)); // Initialisation du générateur de nombres aléatoires
@@ -113,7 +129,7 @@ int main() {
                 dessinerCadre(8, 3, 12, 5);
 
                 gotoxy(14, 5);
-                printf("%d", 0);
+                printf("%d", score1);
                 //Affichage du nom sous le score
                 gotoxy(10, 8);
                 printf("%s", joueur);
@@ -121,7 +137,7 @@ int main() {
                     dessinerCadre(21, 3, 68, 5);
                     gotoxy(46, 8);
                     printf("Grille de lettres");
-                    generer_grille(grille);
+                    generer_grille_manuelle(grille);
                     afficher_grille(grille);
                   // Zone de propositions
                     dessinerCadre(27, 11, 55, 3);
@@ -159,12 +175,12 @@ int main() {
                     gotoxy(13, 4);
                     dessinerCadre(8, 3, 12, 5);
                     gotoxy(14, 5);
-                    printf("%d",0);
+                    printf("%d",score1);
 
                     gotoxy(86, 4);
                     dessinerCadre(90, 3, 12, 5);
                     gotoxy(96, 5);
-                    printf("0");
+                    printf("%d",score2);
 
                 //Affichage des noms sous les scores
                 gotoxy(10, 8);
@@ -174,7 +190,7 @@ int main() {
                 dessinerCadre(21, 3, 68, 5);
                 gotoxy(46, 8);
                 printf("Grille de lettres");
-                generer_grille(grille);
+                generer_grille_manuelle(grille);
                 afficher_grille(grille);
 
                 // Zone de propositions
